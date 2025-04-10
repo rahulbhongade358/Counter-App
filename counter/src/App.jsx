@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 function App() {
+  const [Quantity1, setQuantity1] = useState(0)
+
   let Food = "Burger"
   const price = 40;
 
@@ -14,9 +16,20 @@ function App() {
           <p>Price : ₹{price}</p> 
           <div className='quantity-card'>
             <button 
+            onClick={()=>{
+              if (Quantity1>0) {
+                setQuantity1(Quantity1-1)
+              }
+            }}
              >-</button>
-            <p>0</p>
-            <button>+</button>
+            <p>{Quantity1}</p>
+            <button 
+            onClick={()=> {
+              if (Quantity1<15)
+                 {
+               setQuantity1(Quantity1+1)
+            }}}
+            >+</button>
           </div>
         </div>
 
