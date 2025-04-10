@@ -43,7 +43,6 @@ body {
   color: #2e7d32;
 }
 
-/* Quantity buttons and display */
 .quantity-card {
   display: flex;
   justify-content: center;
@@ -73,3 +72,21 @@ body {
   text-align: center;
   margin: 0;
 }
+.price-card {
+  width: 140px;
+  margin: 12px auto;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  display: inline-block;
+  text-align: center;
+}
+
+.price-card p {
+  margin: 0;
+  font-weight: 500;
+  }
