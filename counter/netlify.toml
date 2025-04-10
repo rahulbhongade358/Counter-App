@@ -1,6 +1,6 @@
 [build]
   publish = "dist" # Make sure this points to your build folder
-  command = "npm run dev"
+  command = "npm run build"
 
 [[redirects]]
  from = "/*"
