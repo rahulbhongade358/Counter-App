@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+
 import './App.css'
 function App() {
   const [Quantity1, setQuantity1] = useState(0)
@@ -6,9 +7,30 @@ function App() {
 
   let Food = "Burger"
   const price = 40;
-  let finaltotal1 = Quantity1 * price
-  let finaltotal2=Quantity2*price
+  let total1 = Quantity1 * price
+  let total2=Quantity2*price
+   let discount = 50
+   const [finaltotal1, setfinaltotal1] = useState(total1)
+   const [finaltotal2, setfinaltotal2] = useState(total2)
    let totalAmount = finaltotal1+finaltotal2
+  let billDiscount = useCallback(
+    () => {
+      if (Quantity1>5) {
+        setfinaltotal1( total1-discount)
+      }else {
+        setfinaltotal1(total1)
+      }
+      if (Quantity2>6) {
+        setfinaltotal2( total2-discount)
+      }else {
+        setfinaltotal2(total2)
+      }
+    }, [Quantity1,Quantity2,total1,total2])
+  
+  useEffect(() => {
+  billDiscount()
+  }, [Quantity1,billDiscount])
+
   return (
     <div className='component'>
       <div className='main-card'>
@@ -47,7 +69,7 @@ function App() {
             <button 
             onClick={()=>{
               if (Quantity2>0) {
-                setQuantity1(Quantity2-1)
+                setQuantity2(Quantity2-1)
               }
             }}
              >-</button>
@@ -71,6 +93,8 @@ function App() {
           Quantity:-{Quantity2} : ₹ {finaltotal2} <br />
           Total Amount : ₹ {totalAmount}
         </p>
+        {Quantity1 > 5 &&  <p style={{ color: 'green' }}>🎉 ₹{discount} discount applied!</p>}
+        {Quantity2 > 6 && <p style={{ color: 'green' }}>🎉 ₹{discount} discount applied!</p>}
 
       </div>
     </div>
